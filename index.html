@@ -1,0 +1,110 @@
+<!doctype html>
+<meta charset=utf-8>
+
+<style>
+    html, body {
+        height: 100%;
+    }
+
+    body {
+        padding-top: 50px;
+    }
+</style>
+
+<script src=http://code.jquery.com/jquery-1.9.1.js></script>
+<script src=http://code.jquery.com/ui/1.9.1/jquery-ui.js></script>
+<script src=js/jquery.csv-0.71.js></script>
+
+<!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+<!-- Optional theme -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
+<!-- Latest compiled and minified JavaScript -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+
+<link href=http://code.jquery.com/ui/1.9.1/themes/smoothness/jquery-ui.css rel=stylesheet>
+<!--
+<link href=http://bootswatch.com/cosmo/bootstrap.min.css rel=stylesheet type=text/css>
+<link href=//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-glyphicons.css rel=stylesheet>
+<script src=http://netdna.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js></script>
+-->
+<script src=http://d3js.org/d3.v3.min.js></script>
+
+  <!-- for slickGrid -->
+
+ <script src="js/jquery.event.drag-2.2.js"></script>
+
+<!-- comes with SlickGrid but brings small font and yelllow background  -->
+<link rel="stylesheet" href="css/examples.css" type="text/css"/>
+
+<script src=dropUploader.js></script>
+
+<div id=info-panel class="modal fade">
+    <div class=modal-dialog>
+        <div class=modal-content>
+            <div class=modal-header>
+                <h3>Information</h3>
+            </div>
+
+            <div class=modal-body>
+                <p>This is a demo application that includes drag and drop handlers</p>
+            </div>
+
+            <div class=modal-footer>
+                <a class="btn btn-default" data-dismiss=modal>OK</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="navbar navbar-default navbar-fixed-top">
+    <div class=navbar-header>
+        <a class=navbar-brand href=/examples>NCI Imaging and Visualization</a>
+    </div>
+
+    <ul class="nav navbar-nav">
+        <li class=active> <a>Drag and Drop Demo</a>
+        <li><a style=cursor:pointer data-toggle=modal data-target=#info-panel><span class="glyphicon glyphicon-info-sign"></span> Info</a>
+    </ul>
+</div>
+
+
+<div class=col-md-6>
+    <h4 style="margin-left:30px">File Drop Zone</h4>
+    <p style="margin-left:30px; margin-right:20px">Drop one or more plain file(s) on the area below to cause them to be uploaded for further processing </p>
+    <div id="drop_zone" style="margin-left:30px; margin-top:20px; width:350px; height:200px; background-color:darkseagreen"><h>Drop files here</h></div>
+            <!-- <output id="list" ></output>  -->
+
+    <p style="margin-right:20px;margin-left:20px; margin-top:20px;">Immediately below is a list of the files that have been 
+             dropped.  Processing will be performed in order starting at top and proceeding down.  If this list is correct, then proceed to the next section on the page below to execute the analysis and download the result
+            result.  If a file needs to be removed from the list instead, drag the element to the trash can. 
+             </p>           
+    <!-- <output id="currentdatasetlist" ></output>  -->
+     <div id="currentdatasetlist" class="list-group" ondragstart="dragStartHandler(event)"></div>
+        <button id="trashcan" style="margin-left:30px; margin-top:0px; width:50px; height:50px; "  class="glyphicon glyphicon-trash"><h></h></button>
+
+    <hr>
+    <h4 style="margin-top:20px; margin-left:20px">Show contents </h4>
+    <p style="margin-right:20px; margin-left:20px">Click the button below to show the file upload results  </p>
+    <div id=showbutton class="btn btn-success " disabled="disabled" style="margin-top:10px;margin-bottom:10px; margin-left:20px">Preview Files</div>      
+
+	<hr>
+    <h4 style="margin-top:20px; margin-left:20px">Download </h4>
+    <p style="margin-right:20px; margin-left:20px">Click the button below to download the analysis results  </p>
+    <div id=processbutton class="btn btn-success " disabled="disabled" style="margin-top:10px;margin-bottom:10px; margin-left:20px">Download Results</div>
+   
+
+	
+</div>
+
+	<!-- place for the compilation table with a row for each group of CSVs, after they have been combined -->
+    <div class=col-md-6>
+		<p style="margin-right:20px;margin-left:20px; margin-top:10px;">Here is the content that was dropped onto the zone. </p>  
+        <div id="filecontent" style="margin-top:20px; width:90%; height:800px;"></div>
+
+    </div>
+
+<hr>
+
+  <div id=download </div>
+
